@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gallery</title>
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #111;
+      font-family: Arial, sans-serif;
+    }
+
+    .gallery {
+      --size: 100px;
+
+      display: grid;
+      grid-template-columns: repeat(6, var(--size));
+      grid-auto-rows: var(--size);
+      gap: 5px;
+
+      place-items: start center;
+      margin-bottom: var(--size);
+    }
+
+    /* Darken non-hovered images */
+    .gallery:has(img:hover) img:not(:hover),
+    .gallery:has(img:focus) img:not(:focus) {
+      filter: brightness(0.5) contrast(0.5);
+    }
+
+    .gallery img {
+      object-fit: cover;
+      width: calc(var(--size) * 2);
+      height: calc(var(--size) * 2);
+
+      grid-column: auto / span 2;
+
+      border-radius: 5px;
+      cursor: pointer;
+
+      transition:
+        clip-path 0.25s,
+        filter 0.75s,
+        transform 0.25s;
+
+      /* Creative blob shape */
+      clip-path: path("M90,10 C100,0 100,0 110,10 190,90 190,90 190,90 200,100 200,100 190,110 190,110 110,190 110,190 100,200 100,200 90,190 90,190 10,110 10,110 0,100 0,100 10,90Z");
+    }
+
+    /* Offset pattern */
+    .gallery img:nth-child(5n - 1) {
+      grid-column: 2 / span 2;
+    }
+
+    /* Hover effect */
+    .gallery img:hover,
+    .gallery img:focus {
+      clip-path: inset(0 round 10px);
+      z-index: 2;
+      transform: scale(1.05);
+
+      transition:
+        clip-path 0.25s,
+        filter 0.25s,
+        transform 0.25s;
+    }
+
+    .gallery img:focus {
+      outline: 2px dashed white;
+      outline-offset: -5px;
+    }
+
+    @media (max-width: 768px) {
+      .gallery {
+        --size: 70px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .gallery {
+        --size: 50px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <article class="gallery">
+    <img src="img/aa1.jpg" alt="guitar player at concert">
+    
+    <img src="img/aa2.jpg" alt="duo singing">
+    
+    <img src="img/aa3.jpg" alt="crowd cheering">
+    
+    <img src="img/aa4.jpg" alt="singer performing">
+    
+    <img src="img/aa6.jpg" alt="singer fistbumping crowd">
+    
+    <img src="img/aa5.jpg" alt="man with a guitar singing">
+    
+    <img src="img/aa7.jpg" alt="crowd looking at a lighted stage">
+    
+    <img src="img/aa8.jpg" alt="woman singing on stage">
+  </article>
+
+</body>
+</html>
